@@ -1,3 +1,7 @@
+! Binary tree fun in Factor
+! By Vishvajit Singh
+! February 2009
+
 USING: random locals ;
 
 TUPLE: node left right data ;

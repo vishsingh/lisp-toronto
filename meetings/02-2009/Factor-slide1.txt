@@ -1,0 +1,27 @@
+                                         Factor presentation
+                                            By Vish Singh
+                                         -------------------
+
+The basic idea of FORTH:
+
+Prefix:     f(x, y, z) = + x * y z                                  (defun f (x y z)
+                                                                        (+ x (* y z)))
+
+Infix:      f(x, y, z) = x + y * z
+
+
+Postfix:    f(x, y, z) = x y z * +
+
+
+And in FORTH..
+
+: f * + ;
+
+DEFINE the word f as the concatenation of the two words * and +.
+
+We assume the user has put x, y, and z on the stack before calling f.
+The effect of f is to remove x, y, and z, and leave only the result of the computation.
+
+
+
+

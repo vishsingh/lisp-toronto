@@ -1,0 +1,24 @@
+Factor presentation to the Toronto Lisp Users' Group - Tuesday, February 3, 2009
+By Vishvajit Singh
+
+- Introduction
+- Show the basics of FORTH (slide)
+- Factor: like FORTH, but modern, compiled, lots of libraries, fun to play with
+- Launch Factor, demonstrate use of stack
+    - push 2, 3, "bob"
+- Demonstrate basic operations
+	- +, *
+	- length
+- Demonstrate stack manipulators
+	- swap, drop, dup, over, rot
+- Demonstrate quotations
+    - [ 1 + ]
+    - call
+- Demonstrate if
+	- booleans
+	- 2 0 > [ "greater" print ] [ "lesser" print ] if
+	- demonstrate defining a word for the above operation, check-number
+- Demonstrate ctrl-shift-h
+- Show the binary tree example (slide)
+- Show the code, and demonstrate, the time server example
+

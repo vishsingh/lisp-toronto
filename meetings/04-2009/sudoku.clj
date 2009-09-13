@@ -8,13 +8,10 @@
 ; -----------------------------------------------------------------------------------------
 
 (defn map2d [f mat]
-  (doall (vec (map #(doall (vec (map f %))) mat))))
+  (vec (map #(vec (map f %)) mat)))
 
 (defn map-n [f seq]
-  (doall (vec (map f seq (iterate inc 0)))))
-
-(defn map-n-cat [f seq]
-  (doall (vec (mapcat f seq (iterate inc 0)))))
+  (vec (map f seq (iterate inc 0))))
 
 ; -----------------------------------------------------------------------------------------
 
@@ -38,11 +35,6 @@
 
 ; -----------------------------------------------------------------------------------------
 
-(defmacro union-map [[var seq] & body]
-  `(apply union
-	  (map (fn [~var] ~@body)
-	       ~seq)))
-
 (defn remove-numbers-from-block [mat x1 y1 x2 y2 numbers]
   (map-n (fn [row y]
 	   (map-n (fn [elem x]
@@ -54,10 +46,9 @@
 
 (defn parse-block [mat x1 y1 x2 y2]
   (remove-numbers-from-block mat x1 y1 x2 y2
-			     (union-map [y (range y1 y2)]
-			       (union-map [x (range x1 x2)]
-				 (let [elem (get-in mat [y x])]
-				   (if (set? elem) #{} #{elem}))))))
+			     (into #{} (for [y (range y1 y2)
+					     x (range x1 x2)
+					     :let [elem (get-in mat [y x])] :when (not (set? elem))] elem))))
 
 (defn parse-blocks [mat blocks]
   (if (empty? blocks)
@@ -81,9 +72,8 @@
 ; -----------------------------------------------------------------------------------------
 
 (defn matrix-to-coord-pairs [mat]
-  (map-n-cat (fn [row y] (map-n (fn [elem x] [[x y] elem])
-				row))
-	     mat))
+  (for [y (range 9) x (range 9) :let [elem (get-in mat [y x])]]
+    [[x y] elem]))
 
 (defn best-unsolved-square [mat]
   (let [unsolved-pairs (filter (comp set? second)

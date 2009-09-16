@@ -115,6 +115,8 @@
 			     "000000700"
 			     "090030510"]))
 
-
-
-
+; TODO: should have this actually compare the results of solve to the correct answers
+(defn run-tests []
+  (print-matrices (concat [*sudoku1* *sudoku2* (parse-sudoku *sudoku1*) (parse-sudoku *sudoku2*)]
+			  (solve *sudoku1*)
+			  (solve *sudoku2*))))

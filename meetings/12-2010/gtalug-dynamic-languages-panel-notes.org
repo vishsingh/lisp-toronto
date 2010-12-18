@@ -1,0 +1,85 @@
+* intro
+  describe the history of Lisp, starting with John McCarthy
+  explain what Lisp is, how its code is also its primary data structure
+
+* Lisp has syntactic consistency
+  Ruby: has blocks, which privilege one function argument
+  Python: has lambdas, which are restricted to only one expression
+
+* How does your language access functionality from C libraries?
+  SBCL FFI:
+  has a C-like language for the declaration of foreign data types and functions
+  define-alien-routine, define-alien-type
+  can deal with alien types using special accessor functions to set and get slots
+
+  Corman Lisp, a Lisp on Windows:
+  actually allowed you to paste C header files into your program
+  I used this to interact with OpenGL and the Win32 API
+* How does your language deal with modularization of common functionality?
+  explain how packages work: namespaces for symbols.
+  defpackage. symbols can be exported. other packages can be imported.
+  ASDF: Another System Definition Facility. package format and build tool for Common Lisp libraries.
+  Quicklisp: a system like apt-get for Common Lisp libraries. contains over 300 libraries.
+  install Lisp systems with many dependencies very fast, e.g. Hunchentoot
+* How does your language handle scalability issues?
+** Applications that require many concurrent threads of execution?
+*** How does the language interact with threading?
+*** Does it offer other models for managing concurrent processing?
+** Applications that require loading large volumes of code?
+   a) Tree shakers can shatter off unused code and construct loadable binaries.
+   b) Bytecode compiled code is compact & quick to load.
+   c) Code compiled to machine code is less compact, but more heavily optimized
+   d) Memory images can be dumped for fast reload  (clisp -M, SBCL save-lisp-and-die)
+      Fingerprinting device, secureoutcomes.net, uses a Lisp image that is simply downloaded into the embedded processor
+** Applications that process huge volumes of data
+   Lisp can certainly interface to SQL databases (CLSQL, LispWorks: Common SQL - mix Lisp and SQL code)
+   Elephant: a persistent object database for Lisp with full transaction semantics
+   A persistent metaprotocol overrides class creation and slot accesses, making slot values automatically persistent.
+   Can use several data stores: Berkeley DB, CLSQL
+   Limitation: functions and closures cannot be stored
+   Allegrograph: a database for the semantic web. can store billions of triples while remaining performant.
+                 a graph database as opposed to a relational database.
+                 by Franz Inc.
+
+* If your dynamic programming language was not available, which of the other dynamic programming languages would you recommend?
+  Ruby. Yukuhiro Matsumoto was influenced by Lisp in creating it.
+  Ruby has strong support for a functional programming style; don't even have to 'return' values at end of blocks.
+  Ruby has a great community, including _why, who created great libraries and tutorials.
+  Ruby is great for teaching young people programming: tryruby, shoes.
+* What is your languages biggest bug, problem, or limitation you are facing today?
+  Lisp's image. Perceived as a slow, ancient AI language, that only has linked lists.
+  Some people see the community as unapproachable, harsh.
+  Thus, fewer people use Lisp.
+** How are you going to solve it?
+   Clojure community is very welcoming.
+   Land of Lisp book can be used to introduce newcomers.
+   Lisp has bad branding, use new names.
+
+* What's the "sweet spot" for your language?
+  AI: Lisp won the Google AI Challenge
+  Symbolic manipulation: theorem provers, computer algebra systems
+  Exploratory programming: a medium for sketching software
+  Language-oriented programming: create DSLs to represent new problem domains
+* Where can I find more information about your language?
+  MIT 6.001 course on YouTube: Structure and Interpretation of Computer Programs
+  books: Practical Common Lisp, Land of Lisp, On Lisp, Let Over Lambda
+  web: planet.lisp.org
+* What kind of community is using and support your language?
+  comp.lang.lisp
+  #lisp on Freenode
+  Hacker News community: news.ycombinator.com
+  reddit.com/r/lisp
+* What *local* community is using and supporting your language?
+  Toronto Lisp User Group: http://www.lisptoronto.org/
+  Linux Caffe near Bloor and Bathurst, first Tuesday of every month, 6pm
+* What language features are notable and interesting?
+  macros: powerful metaprogramming facility
+  CLOS: Common Lisp Object System, Metaobject Protocol
+  continuations in Scheme
+* What notable applications are using the language?
+  Orbitz (ITA Software), written in Common Lisp
+  Hacker News, written in Arc
+  FlightCaster, written in Clojure
+  Naughty Dog's game Jak and Daxter was written in GOAL, a proprietary Lisp
+
+
